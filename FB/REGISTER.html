@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KMIT Clubs Hub - Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --kmit-primary: #2c3e50;
+      --kmit-secondary: #3498db;
+      --kmit-accent: #e74c3c;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg,rgba(52,152,219,0.07),rgba(44,62,80,0.04)), 
+        url('image.jpg') center center no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #333;
+    }
+    .navbar {
+      background-color: var(--kmit-primary);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-brand { font-weight: 700; font-size: 1.3rem; }
+    .register-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 90vh;
+      padding: 40px 20px;
+    }
+    .register-container {
+      background: rgba(255,255,255,0.86);
+      padding: 32px 30px 38px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+      width: 100%;
+      max-width: 440px;
+      backdrop-filter: blur(4px);
+      border: 1.5px solid rgba(52,152,219,0.09);
+      position: relative;
+    }
+    .reg-subtitle {
+      text-align: center;
+      color: #678bbf;
+      font-size: 1rem;
+      margin-top: -10px;
+      margin-bottom: 23px;
+      letter-spacing: 0.6px;
+    }
+    h2 {
+      font-weight: 800;
+      color: var(--kmit-primary);
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: .04em;
+    }
+    label { font-weight: 600; display: block; margin-top: 16px; margin-bottom: 6px; color: #36404a;}
+    select, input[type="text"], input[type="password"], input[type="email"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #ccd2da;
+      border-radius: 8px;
+      font-size: 16px;
+      background: #f5f7faef;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      margin-bottom: 0px;
+      box-sizing: border-box;
+      font-weight: 500;
+      outline: none;
+    }
+    select:focus, input:focus {
+      border-color: var(--kmit-secondary);
+      box-shadow: 0 0 8px var(--kmit-secondary);
+    }
+    small.hint {
+      color: #6a7b90;
+      font-size: 13px;
+      margin-top: 2px;
+      margin-bottom: 13px;
+      font-style: normal;
+      text-decoration: none;
+      font-weight: 400;
+      display: block;
+    }
+    button {
+      width: 100%;
+      padding: 14px 0;
+      margin-top: 18px;
+      background: linear-gradient(90deg,#3498db 80%, #2980b9 100%);
+      border: none;
+      border-radius: 11px;
+      color: white;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(52,152,219,0.13);
+      transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+    }
+    button:hover, button:focus {
+      background: #2271b0;
+      box-shadow: 0 9px 20px rgba(39,121,215,0.21);
+      transform: translateY(-2px);
+      outline: none;
+    }
+    .error {
+      color: var(--kmit-accent);
+      font-size: 15px;
+      min-height: 20px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .error::before {
+      content: "\f06a";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1;
+      vertical-align: middle;
+      color: var(--kmit-accent);
+      margin-right: 4px;
+    }
+    @media (max-width: 480px) {
+      .register-container { padding: 18px 4px; max-width: 96vw;}
+      .reg-subtitle { font-size:15px;}
+    }
+    input:focus, select:focus {
+      box-shadow: 0 0 0 2px rgba(52,152,219,0.17);
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#"><i class="fas fa-users"></i> KMIT Clubs Hub</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="HOMEPAGE.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="REGISTER.html">Register</a></li>
+        <li class="nav-item"><a class="nav-link" href="LOGIN.html">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="CLUBS.html">Clubs</a></li>
+        <li class="nav-item"><a class="nav-link" href="EVENTS.html">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="ABOUTUS.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="register-wrapper">
+  <div class="register-container" role="main" aria-labelledby="regHeading">
+    <h2 id="regHeading">Registration</h2>
+    <div class="reg-subtitle">Register now to join KMIT clubs and events!</div>
+    <form id="registrationForm" autocomplete="off" novalidate>
+      <label for="role">Select Role:</label>
+      <select id="role" name="role" required aria-required="true" aria-describedby="roleHint">
+        <option value="">-- Select --</option>
+        <option value="student">Student</option>
+        <option value="clubhead">Club Head</option>
+        <option value="faculty">Faculty</option>
+      </select>
+      <small id="roleHint" class="hint">Select your appropriate role for registration.</small>
+      
+      <div id="studentFields" style="display:none;" aria-live="polite" aria-atomic="true">
+        <label for="studentUsername">Student Roll No:</label>
+        <input type="text" id="studentUsername" name="studentUsername" placeholder="22BD1A05A4" minlength="10" maxlength="10" pattern="^(22|23|24|25)BD1A05[A-G][0-9]$" oninput="validateStudentRollNo(this)" />
+        <small class="hint">Format: 22/23/24/25 + BD1A05 + A–G + digit (e.g., 23BD1A05C7)</small>
+        <span class="error" id="studentUsernameError"></span>
+        <label for="studentPassword">Password:</label>
+        <input type="password" id="studentPassword" name="studentPassword" minlength="10" maxlength="10" oninput="validateStudentPassword(this)" />
+        <small class="hint">Must be exactly same as Roll No (10 chars)</small>
+        <span class="error" id="studentPasswordError"></span>
+      </div>
+
+      <div id="clubHeadFields" style="display:none;" aria-live="polite" aria-atomic="true">
+        <label for="clubUsername">Club Username:</label>
+        <input type="text" id="clubUsername" name="clubUsername" placeholder="Mudra-Head" maxlength="25" aria-describedby="clubUserHint" />
+        <small id="clubUserHint" class="hint">Username format: CLUB- + 1–10 letters (A–Z)</small>
+        <label for="clubPassword">Password:</label>
+        <input type="password" id="clubPassword" name="clubPassword" minlength="8" maxlength="32" aria-describedby="clubPassHint" />
+        <small id="clubPassHint" class="hint">Min 8 chars; include uppercase, lowercase, number, special</small>
+      </div>
+
+      <div id="facultyFields" style="display:none;" aria-live="polite" aria-atomic="true">
+        <label for="facultyName">Faculty Name:</label>
+        <input type="text" id="facultyName" name="facultyName" minlength="1" maxlength="50" aria-describedby="facultyNameHint" />
+        <small id="facultyNameHint" class="hint">Alphabets and spaces only, max 50 characters</small>
+        <label for="facultyEmail">Faculty Email:</label>
+        <input type="email" id="facultyEmail" name="facultyEmail" maxlength="50" aria-describedby="facultyEmailHint" />
+        <small id="facultyEmailHint" class="hint">Enter a valid Gmail address (example@gmail.com)</small>
+        <label for="facultyPassword">Password:</label>
+        <input type="password" id="facultyPassword" name="facultyPassword" minlength="8" maxlength="32" aria-describedby="facultyPassHint" />
+        <small id="facultyPassHint" class="hint">Min 8 chars; include uppercase, lowercase, number, special</small>
+      </div>
+
+      <div id="errorMsg" class="error" aria-live="polite" role="alert"></div>
+      <button type="submit" id="submitBtn">Register</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Role selection handler
+  const roleSelect = document.getElementById("role");
+  const studentFields = document.getElementById("studentFields");
+  const clubHeadFields = document.getElementById("clubHeadFields");
+  const facultyFields = document.getElementById("facultyFields");
+  const errorMsg = document.getElementById("errorMsg");
+
+  roleSelect.addEventListener("change", () => {
+    [studentFields, clubHeadFields, facultyFields].forEach(el => {
+      el.style.display = "none";
+      const inputs = el.querySelectorAll('input');
+      inputs.forEach(input => input.value = '');
+      // Clear errors
+      const errors = el.querySelectorAll('.error');
+      errors.forEach(error => error.textContent = '');
+    });
+    errorMsg.textContent = '';
+    if (roleSelect.value === "student") studentFields.style.display = "block";
+    else if (roleSelect.value === "clubhead") clubHeadFields.style.display = "block";
+    else if (roleSelect.value === "faculty") facultyFields.style.display = "block";
+  });
+
+  function validateStudentRollNo(input) {
+    const errorSpan = document.getElementById('studentUsernameError');
+    const pattern = /^(22|23|24|25)BD1A05[A-G][0-9]$/;
+    if (!pattern.test(input.value)) {
+      errorSpan.textContent = 'Invalid Roll No format. Use: 23BD1A05C7';
+      return false;
+    } else {
+      errorSpan.textContent = '';
+      return true;
+    }
+  }
+  function validateStudentPassword(input) {
+    const errorSpan = document.getElementById('studentPasswordError');
+    const rollNo = document.getElementById('studentUsername').value;
+    if (input.value !== rollNo) {
+      errorSpan.textContent = 'Password must match Roll No';
+      return false;
+    } else {
+      errorSpan.textContent = '';
+      return true;
+    }
+  }
+  // Club Head and Faculty validation, as previously shown, can be updated similarly
+
+  document.getElementById("registrationForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    errorMsg.textContent = '';
+    const role = roleSelect.value;
+    if (!role) {
+      errorMsg.textContent = "❌ Please select a role.";
+      return;
+    }
+    let isValid = true;
+    if (role === "student") {
+      isValid = validateStudentRollNo(studentFields.querySelector("#studentUsername")) &&
+        validateStudentPassword(studentFields.querySelector("#studentPassword"));
+    } else if (role === "clubhead") {
+      const clubUsername = clubHeadFields.querySelector("#clubUsername");
+      const clubPassword = clubHeadFields.querySelector("#clubPassword");
+      isValid = clubUsername.value.trim() !== '' && clubPassword.value.trim() !== '';
+      if (!isValid) {
+        errorMsg.textContent = '❌ Please fill in all fields';
+        return;
+      }
+    } else if (role === "faculty") {
+      isValid =
+        facultyFields.querySelector("#facultyName").value.trim() !== '' &&
+        facultyFields.querySelector("#facultyEmail").value.trim() !== '' &&
+        facultyFields.querySelector("#facultyPassword").value.trim() !== '';
+      // You can add your own faculty validation here
+    }
+    
+    if (!isValid) {
+      errorMsg.textContent = '❌ Please fix the validation errors above.';
+      return;
+    }
+
+    // Prepare data to send
+    const data = {
+      role,
+      studentUsername: studentFields.querySelector("#studentUsername").value,
+      studentPassword: studentFields.querySelector("#studentPassword").value,
+      clubUsername: clubHeadFields.querySelector("#clubUsername").value,
+      clubPassword: clubHeadFields.querySelector("#clubPassword").value,
+      facultyName: facultyFields.querySelector("#facultyName").value,
+      facultyEmail: facultyFields.querySelector("#facultyEmail").value,
+      facultyPassword: facultyFields.querySelector("#facultyPassword").value,
+    };
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Registering...';
+
+    try {
+      const res = await fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const response = await res.json();
+      if (response.message && response.message.includes("✅")) {
+        errorMsg.style.color = '#00C851';
+        errorMsg.textContent = response.message;
+        setTimeout(() => {
+          window.location.href = "LOGIN.html";
+        }, 1500);
+      } else {
+        errorMsg.style.color = 'red';
+        errorMsg.textContent = response.error || "Registration failed";
+      }
+    } catch (err) {
+      errorMsg.style.color = 'red';
+      errorMsg.textContent = "Registration failed. Please try again.";
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Register';
+    }
+  });
+</script>
+</body>
+</html>

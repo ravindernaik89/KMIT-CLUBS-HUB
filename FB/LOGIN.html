@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FACULTECH Login</title>
+  <!-- Bootstrap + FontAwesome + Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2, white 70%), url('https://i.pinimg.com/736x/29/c1/34/29c134c36709334248d24061163381dc.jpg');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: lighten;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      background-color: #2c3e50;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .container-login {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 700px;
+      width: 98vw;
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.13);
+      animation: fadeIn 0.8s ease;
+      margin: 48px auto 0 auto;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .left-panel {
+      flex: 1.7 1 0;
+      padding: 32px 22px 32px 30px;
+      min-width: 270px;
+      min-height: 352px;
+      background: #fdfdfd;
+      transition: all 0.3s ease-in-out;
+    }
+    .right-panel {
+      flex: 0.65 1 0;
+      padding: 32px 17px;
+      min-width: 170px;
+      min-height: 352px;
+      background: linear-gradient(135deg, #455574, #3b4a6d 86%);
+      color: #f4f4fa;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-left: 1px solid #e5eaff2a;
+      transition: all 0.3s ease-in-out;
+    }
+    .left-panel h2 {
+      margin-bottom: 22px;
+      color: #1e3c72;
+      font-size: 25px;
+      text-align: center;
+    }
+    .left-panel label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+      color: #333;
+      font-size: 15px;
+    }
+    /* Make form-group wrapper no extra margin bottom so button comes close */
+    .form-group {
+      margin-bottom: 6px;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .input-group .bi {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.13em;
+      color: #1e3c72b0;
+      z-index: 2;
+    }
+    .left-panel input {
+      width: 100%;
+      padding: 11px 10px 11px 39px;
+      border: 1px solid #ccc;
+      border-radius: 9px;
+      font-size: 15px;
+      background: #f8f8f8;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    .left-panel input:focus {
+      border-color: #2a5298;
+      background: #fff;
+      outline: none;
+      box-shadow: 0 0 7px #2a529858;
+    }
+    .input-hint {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 11px;
+      margin-top: -12px;
+      margin-left: 7px;
+    }
+    /* Make sure the login button is full width and directly below inputs */
+    .left-panel button {
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(90deg,#1e3c72 72%, #3498db 100%);
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      margin-top: 8px;
+    }
+    .left-panel button:hover {
+      background: linear-gradient(90deg,#16325c 72%, #2566df 100%);
+      transform: translateY(-2px);
+    }
+    .message {
+      padding: 10px;
+      margin-bottom: 14px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .right-panel h1 {
+      margin-bottom: 9px;
+      font-size: 23px;
+      font-weight: bold;
+    }
+    .right-panel p {
+      font-size: 15px;
+      margin-bottom: 19px;
+    }
+    .role-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 88%;
+      max-width: 200px;
+      margin-top: 10px;
+    }
+    /* Make role buttons 100% width to align nicely */
+    .role-buttons button {
+      padding: 11px;
+      background: #f2f4fa;
+      color: #33415a;
+      border: none;
+      font-weight: bold;
+      font-size: 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.07);
+      width: 100%;
+    }
+    .role-buttons button:hover {
+      background: #e0e6f4;
+      color: #1e3c72;
+      transform: translateY(-2px);
+    }
+    @media (max-width: 768px) {
+      .container-login {
+        flex-direction: column;
+        max-width: 380px;
+      }
+      .right-panel,
+      .left-panel {
+        padding: 22px 12px;
+        min-width: unset;
+        min-height: auto;
+      }
+      .role-buttons {
+        max-width: 100%;
+      }
+    }
+    .input-group {
+  position: relative;
+  margin-bottom: 13px;
+}
+.input-group .bi {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.13em;
+  color: #1e3c72b0;
+  z-index: 2;
+}
+.left-panel input {
+  width: 100%;
+  padding: 11px 10px 11px 39px; /* Left padding adjusted for icon */
+  margin-bottom: 13px;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+  font-size: 15px;
+  background: #f8f8f8;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.input-hint {
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 11px;
+  margin-top: -12px;
+  margin-left: 7px;
+}
+
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="fas fa-users"></i> KMIT Clubs Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="HOMEPAGE.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="REGISTER.html">Register</a></li>
+          <li class="nav-item"><a class="nav-link active" href="LOGIN.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="CLUBS.html">Clubs</a></li>
+          <li class="nav-item"><a class="nav-link" href="EVENTS.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="ABOUTUS.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-login">
+    <div class="left-panel">
+      <h2 id="form-title">Welcome</h2>
+      <form id="loginForm">
+        <div id="form-content">
+          <p>Select a role to begin.</p>
+        </div>
+      </form>
+    </div>
+
+    <div class="right-panel">
+      <h1>Welcome to KMIT CLUBS HUB</h1>
+      <p>Choose your role to access features</p>
+      <div class="role-buttons">
+        <button onclick="showForm('Admin')">Admin</button>
+        <button onclick="showForm('Student')">Student</button>
+        <button onclick="showForm('ClubHead')">Club Head</button>
+        <button onclick="showForm('Faculty')">Faculty</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    let currentRole = "";
+
+    function showForm(role) {
+      currentRole = role;
+      const formTitle = document.getElementById("form-title");
+      const formContent = document.getElementById("form-content");
+      formTitle.innerText = role + " Login";
+      const registerLink = `
+        <p style="margin-top: 15px; text-align: center;">
+          Don't have an account? <a href="./REGISTER.html" style="color:#1e3c72; text-decoration:underline;">Register</a>
+        </p>
+      `;
+
+      if (role === "Student") {
+        formContent.innerHTML = `
+          <div class="form-group">
+            <label for="rollNo">Roll Number</label>
+            <input type="text" id="rollNo" required />
+          </div>
+          <div class="form-group">
+            <label for="studentPassword">Password</label>
+            <input type="password" id="studentPassword" required />
+          </div>
+          <button type="button" onclick="studentLogin()">Login</button>
+          ${registerLink}
+        `;
+      } else if (role === "Faculty") {
+        formContent.innerHTML = `
+          <div class="form-group">
+            <label for="facultyemail">Faculty email</label>
+            <input type="text" id="facultyId" required />
+          </div>
+          <div class="form-group">
+            <label for="facultyPassword">Password</label>
+            <input type="password" id="facultyPassword" required />
+          </div>
+          <button type="button" onclick="facultyLogin()">Login</button>
+          ${registerLink}
+        `;
+      } else if (role === "Admin") {
+        formContent.innerHTML = `
+          <div class="form-group">
+            <label for="adminId">Admin ID</label>
+            <input type="text" id="adminId" required />
+          </div>
+          <div class="form-group">
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminPassword" required />
+          </div>
+          <button type="button" onclick="adminLogin()">Login</button>
+          ${registerLink}
+        `;
+      } else if (role === "ClubHead") {
+        formContent.innerHTML = `
+          <div class="form-group">
+            <label for="clubheadId">Club Head ID</label>
+            <input type="text" id="clubheadId" required />
+          </div>
+          <div class="form-group">
+            <label for="clubheadPassword">Password</label>
+            <input type="password" id="clubheadPassword" required />
+          </div>
+          <button type="button" onclick="clubheadLogin()">Login</button>
+          ${registerLink}
+        `;
+      }
+    }
+
+    // Fixed login functions
+    function studentLogin() {
+      const username = document.getElementById("rollNo").value;
+      const password = document.getElementById("studentPassword").value;
+
+      fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: "student", username, password }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("role", "student");
+
+            const base64Url = data.token.split(".")[1];
+            const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+            const jsonPayload = decodeURIComponent(
+              atob(base64)
+                .split("")
+                .map(function (c) {
+                  return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join("")
+            );
+
+            const user = JSON.parse(jsonPayload);
+            localStorage.setItem("username", user.username || "Unknown");
+            console.log(
+              "Logged in as:",
+              user.name || user.username || "Unknown"
+            );
+
+            window.location.href = "STUDENTDASHBOARD.html";
+          } else {
+            alert(data.error);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Login failed.");
+        });
+    }
+
+    function facultyLogin() {
+      const username = document.getElementById("facultyId").value;
+      const password = document.getElementById("facultyPassword").value;
+
+      fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: "faculty", username, password }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("role", "faculty");
+
+            const base64Url = data.token.split(".")[1];
+            const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+            const jsonPayload = decodeURIComponent(
+              atob(base64)
+                .split("")
+                .map(function (c) {
+                  return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join("")
+            );
+
+            const user = JSON.parse(jsonPayload);
+            localStorage.setItem("username", user.username || "Unknown");
+            console.log(
+              "Logged in as:",
+              user.name || user.username || "Unknown"
+            );
+
+            window.location.href = "FACULTYDASHBOARD.html";
+          } else {
+            alert(data.error);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Login failed.");
+        });
+    }
+
+    function adminLogin() {
+      const username = document.getElementById("adminId").value;
+      const password = document.getElementById("adminPassword").value;
+
+      fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: "admin", username, password }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("role", "admin");
+
+            const base64Url = data.token.split(".")[1];
+            const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+            const jsonPayload = decodeURIComponent(
+              atob(base64)
+                .split("")
+                .map(function (c) {
+                  return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join("")
+            );
+
+            const user = JSON.parse(jsonPayload);
+            localStorage.setItem("username", user.username || user.name || "Unknown");
+            console.log(
+              "Logged in as:",
+              user.name || user.username || "Unknown"
+            );
+
+            window.location.href = "ADMINDASHBOARD.html";
+          } else {
+            alert(data.error);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Login failed.");
+        });
+    }
+
+    function clubheadLogin() {
+      const username = document.getElementById("clubheadId").value;
+      const password = document.getElementById("clubheadPassword").value;
+
+      fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: "clubhead", username, password }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.token) {
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("role", "clubhead");
+
+            const base64Url = data.token.split(".")[1];
+            const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+            const jsonPayload = decodeURIComponent(
+              atob(base64)
+                .split("")
+                .map(function (c) {
+                  return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join("")
+            );
+
+            const user = JSON.parse(jsonPayload);
+            localStorage.setItem("username", user.username || user.name || "Unknown");
+            console.log(
+              "Logged in as:",
+              user.name || user.username || "Unknown"
+            );
+
+            window.location.href = "CLUBHEADDASHBOARD.html";
+          } else {
+            alert(data.error);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Login failed.");
+        });
+    }
+    formContent.innerHTML = `
+  <label for="${role.toLowerCase()}Username">${usernameLabel}</label>
+  <div class="input-group">
+    <i class="bi ${usernameIcon}"></i>
+    <input type="${inputType}" id="${role.toLowerCase()}Username" required />
+  </div>
+  <div class="input-hint">${usernameHint}</div>
+  <label for="${role.toLowerCase()}Password">Password</label>
+  <div class="input-group">
+    <i class="bi bi-lock"></i>
+    <input type="password" id="${role.toLowerCase()}Password" required />
+  </div>
+  <div class="input-hint">Your password</div>
+  ${showForgot ? `<div style="display:flex;justify-content:space-between;margin-bottom:15px;">
+    <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
+    <a href="REGISTER.html">Register</a>
+  </div>` : ''}
+  <button type="button" onclick="loginUser('${role}')">Login</button>
+`;
+
+  </script>
+</body>
+</html>
